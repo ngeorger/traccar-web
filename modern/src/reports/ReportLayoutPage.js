@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useState } from 'react';
 import { Grid, Paper, makeStyles } from '@material-ui/core';
 import MainToolbar from '../MainToolbar';
@@ -25,7 +26,7 @@ const ReportLayoutPage = ({ reportFilterForm:ReportFilterForm, setItems, ...rest
     setItems(data);
   }
   return (
-    <div className={classes.root}>
+  <div className={classes.root}>
       <MainToolbar />
       <div className={classes.content}>
         <Grid container spacing={2}>

@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContainer: {
     flexGrow: 1,
+    minZoom: 12,
   },
 }));
 

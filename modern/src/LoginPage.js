@@ -79,7 +79,7 @@ const LoginPage = () => {
   return (
     <main className={classes.root}>
       <Paper className={classes.paper}>
-        <img className={classes.logo} src='/logo.svg' alt='Traccar' />
+        <img className={classes.logo} src='/logo.svg' alt='Tucapel2' />
         <form onSubmit={handleLogin}>
 
           <TextField
@@ -93,7 +93,7 @@ const LoginPage = () => {
             autoComplete='email'
             autoFocus
             onChange={handleEmailChange}
-            helperText={failed && 'Invalid username or password'} />
+            helperText={failed && 'Usuario o clave incorrecto'} />
 
           <TextField
             margin='normal'
@@ -107,14 +107,15 @@ const LoginPage = () => {
             autoComplete='current-password'
             onChange={handlePasswordChange} />
 
+
           <FormControl fullWidth margin='normal'>
             <div className={classes.buttons}>
               <Button type='button' variant='contained' disabled onClick={handleRegister}>
-                {t('loginRegister')}
+                {t('login')}{' Registrar'}
               </Button>
               <Button type='submit' variant='contained' color='primary' disabled={!email || !password}>
-                {t('loginLogin')}
-              </Button>
+              {t('login')}{' Entrar'}
+            </Button>
             </div>
           </FormControl>
         </form>
