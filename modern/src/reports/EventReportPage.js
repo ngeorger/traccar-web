@@ -6,26 +6,31 @@ import { formatPosition } from '../common/formatter';
 import ReportFilter from './ReportFilter';
 import ReportLayoutPage from './ReportLayoutPage';
 
-const ReportFilterForm = ({ onResult }) => {
-  const [eventType, setEventType] = useState(['allEvents']);
+const ReportFilterForm = ({ setItems }) => {
 
-  const handleSubmit = async (deviceId, from, to) => {
-    const query = new URLSearchParams({
-      deviceId,
-      from: from.toISOString(),
-      to: to.toISOString(),
-    });
-    eventType.map(t=>query.append('type',t));
-    const response = await fetch(`/api/reports/events?${query.toString()}`, { headers: { Accept: 'application/json' } });
-    if(response.ok) {
-      onResult(await response.json());
+  const [eventTypes, setEventTypes] = useState(['allEvents']);
+
+  const handleSubmit = async (deviceId, from, to, mail, headers) => {
+    const query = new URLSearchParams({ deviceId, from, to, mail });
+    eventTypes.forEach(it => query.append('type', it));
+    const response = await fetch(`/api/reports/events?${query.toString()}`, { headers });
+    if (response.ok) {
+      const contentType = response.headers.get('content-type');
+      if (contentType) {
+        if (contentType === 'application/json') {
+          setItems(await response.json());
+        } else {
+          window.location.assign(window.URL.createObjectURL(await response.blob()));
+        }
+      }
     }
-  }    
+  };
+
   return (
     <ReportFilter handleSubmit={handleSubmit}>
       <FormControl variant="filled" margin="normal" fullWidth>
         <InputLabel>{t('reportEventTypes')}</InputLabel>
-        <Select value={eventType} onChange={(e) => setEventType(e.target.value)} multiple>
+        <Select value={eventTypes} onChange={e => setEventTypes(e.target.value)} multiple>
           <MenuItem value="allEvents">{t('eventAll')}</MenuItem>
           <MenuItem value="deviceOnline">{t('eventDeviceOnline')}</MenuItem>
           <MenuItem value="deviceUnknown">{t('eventDeviceUnknown')}</MenuItem>
@@ -51,6 +56,7 @@ const ReportFilterForm = ({ onResult }) => {
 }
 
 const EventReportPage = () => {
+
   const [items, setItems] = useState([]);
 
   return (
@@ -66,11 +72,9 @@ const EventReportPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => (
+            {items.map(item => (
               <TableRow key={item.id}>
-                <TableCell>
-                  {formatPosition(item, 'serverTime')}
-                </TableCell>
+                <TableCell>{formatPosition(item, 'serverTime')}</TableCell>
                 <TableCell>{item.type}</TableCell>
                 <TableCell>{}</TableCell>
                 <TableCell>{}</TableCell>
