@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: theme.zIndex.drawer + 1,
   },
   list: {
-    width: 250
+    width: 200
   },
   menuButton: {
     marginLeft: -12,
@@ -78,9 +78,9 @@ const MainToolbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.flex}>
-            Traccar
+            Tucapel React
           </Typography>
-          <Button color="inherit" onClick={handleLogout}>{t('loginLogout')}</Button>
+  <Button color="inherit" onClick={handleLogout}>{t('login')}{'Cerrar Sesión'}</Button>
         </Toolbar>
       </AppBar>
       <Drawer open={drawer} onClose={closeDrawer}>

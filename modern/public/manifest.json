@@ -1,6 +1,6 @@
 {
-  "short_name": "Traccar",
-  "name": "Traccar GPS Tracking System",
+  "short_name": "TucapelCamiones",
+  "name": "Vista 2.0 TucapelCamiones",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,6 @@
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "black",
+  "background_color": "#bb0000"
 }
