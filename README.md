@@ -4,6 +4,11 @@
 
 Traccar is open source server for various GPS tracking devices. This repository contains web interface for the Traccar platform. For back-end checkout [main Traccar repository](https://github.com/tananaev/traccar).
 
+## Mod ngeorger
+
+Ajustes para implementacion a servicios tucapel
+
+
 ## New version
 
 A new version of the web app is under development alongside original web app. It will be available under Apache open source license. It uses React, Material UI and other modern web frameworks. Check [modern](https://github.com/traccar/traccar-web/tree/master/modern) folder for more details.
